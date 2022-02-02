@@ -1,20 +1,27 @@
 {
   "name": "trial-mysql",
+  "license": "MIT",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "keywords": [
+    "mysql",
+    "phpmyadmin"
+  ],
+  "author": {
+    "name": "Kamas Lau",
+    "email": "kamaslau@outlook.com"
+  },
+  "main": "app.js",
   "scripts": {
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down --volumes",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kamaslau/trial-mysql.git"
   },
-  "keywords": [
-    "mysql"
-  ],
-  "author": "Kamas Lau",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kamaslau/trial-mysql/issues"
   },
