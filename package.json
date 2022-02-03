@@ -4,8 +4,12 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [
+    "trial",
     "mysql",
-    "phpmyadmin"
+    "mariadb",
+    "adminer",
+    "docker",
+    "docker compose"
   ],
   "author": {
     "name": "Kamas Lau",
