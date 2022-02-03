@@ -2,7 +2,7 @@
 
 MySQL 选型/快速试用。UI 为 Adminer。
 
-## UI 入口
+## 路径
 
 - [DB@3306](http://localhost:3306)
 - [UI@8080](http://localhost:8080)
