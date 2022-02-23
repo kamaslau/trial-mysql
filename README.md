@@ -59,6 +59,20 @@ docker exec -it [容器名称] sh
 ls -l /usr/lib/mysql/plugin
 ```
 
+### 错误处理
+
+## Host '172.18.0.1' is not allowed to connect to this MySQL server
+
+[用户无权通过当前网络访问MySQL](https://github.com/docker-library/mysql/issues/275)。
+
+```
+docker exec -it trial-mysql_db_1 bash # 进入容器内部命令行
+mysql -u root -p # 使用root用户名登录，会提示输入密码
+CREATE USER 'root'@'%' IDENTIFIED BY '123456'; # 创建通过所有网络访问MySQL的root用户
+grant all on *.* to 'root'@'%'; # 授予全部权限给上述用户
+select host ,user from mysql.user; # 确认用户创建成功
+```
+
 ## 相关 Docker 镜像
 
 - [Adminer](https://hub.docker.com/_/adminer)
