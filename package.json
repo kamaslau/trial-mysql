@@ -17,8 +17,8 @@
   },
   "main": "app.js",
   "scripts": {
-    "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down --volumes",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down --volumes",
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
