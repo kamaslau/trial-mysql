@@ -1,6 +1,6 @@
 # trial-mysql
 
-A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentation/) bootstraper, using Adminer as dashboard UI。
+A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentation/) bootstraper, using [Adminer](https://www.adminer.org/) as dashboard UI。
 
 ## Service URL
 
@@ -17,7 +17,7 @@ A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentatio
 
 ### Start a service group
 
-Manage service stack with Docker Compose, through NPM (optional).
+Manage service stack with [Docker Compose](https://docs.docker.com/compose/), through NPM (optional).
 
 ```shell
 # Start services
