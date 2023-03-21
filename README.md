@@ -1,69 +1,71 @@
 # trial-mysql
 
-MySQL 选型/快速试用。UI 为 Adminer。
+A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentation/) bootstraper, using Adminer as dashboard UI。
 
-## 路径
+## Service URL
 
-- [DB@3306](http://localhost:3306)
-- [UI@8080](http://localhost:8080)
+- Database (MySQL/MariaDB) [http://localhost:3306](http://localhost:3306)
+- Dashboard UI (Adminer) [http://localhost:8080](http://localhost:8080)
 
-## 初始账号
+## Default user for dashboard
 
-| 用户名 | 密码   |
-| ------ | ------ |
-| root   | 123456 |
+| Username | Password |
+| -------- | -------- |
+| root     | 123456   |
 
-## 命令行工具
+## Usage
 
-通过 docker-compose 管理服务栈（含存储容器、网络等配置）：
+### Start a service group
+
+Manage service stack with Docker Compose, through NPM (optional).
 
 ```shell
-# 启动服务栈
+# Start services
 npm run docker:up
 
-# 停用并移除服务栈（及其数据卷）
+# Stop services and prune Docker volumes
 npm run docker:down
 ```
 
-## 分别启动容器
+### Start services individually
 
-先启动数据库（MySQL/MariaDB）容器，再启动 UI 容器。
+Launch database first, then the UI.
 
-### MySQL
+#### MySQL
 
 ```shell
 docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql mysql:latest
 ```
 
-### MariaDB
+#### MariaDB
 
 ```shell
-docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mariadb mariadb:latest
+docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql mariadb:latest
 ```
 
-### Adminer
+#### Adminer
 
-通过使用 `--link 数据库容器名:db` 参数，传入要在 Adminer 中操作的数据库。
+通过使用 `--link database-container-name:db` 参数，传入要在 Adminer 中操作的数据库。
 
 ```shell
 docker run -p 8080:8080 -d --restart always --link mysql:db --name adminer adminer:latest
 ```
 
-## 操作容器
+### Further operations
 
 ```shell
-# 启动并挂载命令行工具到容器内
-docker exec -it [容器名称] sh
+# Enter container and initiate shell
+docker exec -it mysql sh
 
-# 列出已安装插件
+# List installed plugins
 ls -l /usr/lib/mysql/plugin
 ```
 
-### 错误处理
+### Error handling
 
 ## Host '172.18.0.1' is not allowed to connect to this MySQL server
 
-[用户无权通过当前网络访问MySQL](https://github.com/docker-library/mysql/issues/275)。
+[用户无权通过当前网络访问 MySQL](https://github.com/docker-library/mysql/issues/275)。
 
 ```
 docker exec -it trial-mysql_db_1 bash # 进入容器内部命令行
@@ -73,7 +75,7 @@ grant all on *.* to 'root'@'%'; # 授予全部权限给上述用户
 select host ,user from mysql.user; # 确认用户创建成功
 ```
 
-## 相关 Docker 镜像
+## Relevent Docker images
 
 - [Adminer](https://hub.docker.com/_/adminer)
 - [MySQL](https://hub.docker.com/_/mysql)
