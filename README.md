@@ -1,11 +1,11 @@
 # trial-mysql
 
-A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentation/) bootstraper, using [Adminer](https://www.adminer.org/) as dashboard UI。
+A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentation/) bootstraper, using [Adminer](https://www.adminer.org/) as Web UI。
 
 ## Service URL
 
 - Database (MySQL/MariaDB) [http://localhost:3306](http://localhost:3306)
-- Dashboard UI (Adminer) [http://localhost:8080](http://localhost:8080)
+- Web UI (Adminer) [http://localhost:8080](http://localhost:8080)
 
 ## Default user for dashboard
 
@@ -31,21 +31,21 @@ npm run docker:down
 
 Launch database first, then the UI.
 
-#### MySQL
-
-```shell
-docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql mysql:latest
-```
-
 #### MariaDB
 
 ```shell
 docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql mariadb:latest
 ```
 
+#### MySQL
+
+```shell
+docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql mysql:latest
+```
+
 #### Adminer
 
-通过使用 `--link database-container-name:db` 参数，传入要在 Adminer 中操作的数据库。
+Pass in to link the database container with param `--link database-container-name:db` .
 
 ```shell
 docker run -p 8080:8080 -d --restart always --link mysql:db --name adminer adminer:latest
@@ -78,5 +78,5 @@ select host ,user from mysql.user; # 确认用户创建成功
 ## Relevent Docker images
 
 - [Adminer](https://hub.docker.com/_/adminer)
-- [MySQL](https://hub.docker.com/_/mysql)
 - [MariaDB](https://hub.docker.com/_/mariadb)
+- [MySQL](https://hub.docker.com/_/mysql)
