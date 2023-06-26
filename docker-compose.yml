@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  db:
+  mysql:
     image: mysql
     restart: always
     networks:
@@ -15,10 +15,10 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=123456
 
-  ui:
+  adminer:
     image: adminer
     depends_on:
-      - db
+      - mysql
     restart: always
     networks:
       - backend
@@ -32,3 +32,4 @@ volumes:
 networks:
   frontend:
   backend:
+    external: false

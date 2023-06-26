@@ -9,6 +9,8 @@ A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentatio
 
 ## Default user for dashboard
 
+Default logins should only be used in local/dev environments.
+
 | Username | Password |
 | -------- | -------- |
 | root     | 123456   |
@@ -17,14 +19,21 @@ A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentatio
 
 ### Start a service group
 
-Manage service stack with [Docker Compose](https://docs.docker.com/compose/), through NPM (optional).
+Manage service stack with [Docker Compose](https://docs.docker.com/compose/).
 
-```shell
+```bash
 # Start services
-npm run docker:up
+docker compose up -d
 
 # Stop services and prune Docker volumes
-npm run docker:down
+docker compose down -v
+```
+
+To update containers with latest images:
+
+```bash
+docker compose pull
+docker compose up -d
 ```
 
 ### Start services individually
@@ -33,13 +42,13 @@ Launch database first, then the UI.
 
 #### MariaDB
 
-```shell
+```bash
 docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql mariadb:latest
 ```
 
 #### MySQL
 
-```shell
+```bash
 docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql mysql:latest
 ```
 
@@ -47,13 +56,13 @@ docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --n
 
 Pass in to link the database container with param `--link database-container-name:db` .
 
-```shell
+```bash
 docker run -p 8080:8080 -d --restart always --link mysql:db --name adminer adminer:latest
 ```
 
 ### Further operations
 
-```shell
+```bash
 # Enter container and initiate shell
 docker exec -it mysql sh
 
