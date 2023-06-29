@@ -57,7 +57,7 @@ docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --n
 Pass in to link the database container with param `--link database-container-name:db` .
 
 ```bash
-docker run -p 8080:8080 -d --restart always --link mysql:db --name adminer adminer:latest
+docker run -p 8080:8080 -d --restart always --link mysql --name adminer adminer:latest
 ```
 
 ### Further operations
@@ -72,16 +72,27 @@ ls -l /usr/lib/mysql/plugin
 
 ### Error handling
 
-## Host '172.18.0.1' is not allowed to connect to this MySQL server
+## Host '172.18.0.x' is not allowed to connect to this MySQL server
 
 [用户无权通过当前网络访问 MySQL](https://github.com/docker-library/mysql/issues/275)。
 
+```bash
+# 进入容器内部命令行
+docker exec -it trial-mysql-mysql-1 bash
+
+# 使用root用户名登录，会提示输入密码
+mysql -u root -p
 ```
-docker exec -it trial-mysql_db_1 bash # 进入容器内部命令行
-mysql -u root -p # 使用root用户名登录，会提示输入密码
-CREATE USER 'root'@'%' IDENTIFIED BY '123456'; # 创建通过所有网络访问MySQL的root用户
-grant all on *.* to 'root'@'%'; # 授予全部权限给上述用户
-select host ,user from mysql.user; # 确认用户创建成功
+
+```sql
+-- 创建通过所有网络访问MySQL的root用户
+CREATE USER 'root'@'%' IDENTIFIED BY '123456';
+-- 授予全部权限给该用户
+grant all privileges on *.* to 'root'@'%';
+-- grant all privileges on *.* to 'root'@'%' identified by '123456';
+
+-- 确认用户创建成功
+select host ,user from mysql.user;
 ```
 
 ## Relevent Docker images

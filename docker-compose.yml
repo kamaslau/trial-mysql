@@ -1,5 +1,12 @@
 version: "3.9"
 
+volumes:
+  mysql_data:
+
+networks:
+  frontend:
+  backend:
+
 services:
   mysql:
     image: mysql
@@ -25,11 +32,3 @@ services:
       - frontend
     ports:
       - 8080:8080
-
-volumes:
-  mysql_data:
-
-networks:
-  frontend:
-  backend:
-    external: false
