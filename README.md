@@ -7,7 +7,7 @@ A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentatio
 - Database (MySQL/MariaDB) [http://localhost:3306](http://localhost:3306)
 - Web UI (Adminer) [http://localhost:8080](http://localhost:8080)
 
-## Default user for dashboard
+## Default user
 
 Default logins should only be used in local/dev environments.
 
