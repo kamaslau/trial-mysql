@@ -9,6 +9,7 @@ networks:
 
 services:
   mysql:
+    container_name: mysql
     image: mysql
     restart: always
     networks:
@@ -23,6 +24,7 @@ services:
       - MYSQL_ROOT_PASSWORD=123456
 
   adminer:
+    container_name: adminer
     image: adminer
     depends_on:
       - mysql
