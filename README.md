@@ -5,7 +5,7 @@ A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentatio
 ## Service URL
 
 - Database (MySQL/MariaDB) [http://localhost:3306](http://localhost:3306)
-- Web UI (Adminer) [http://localhost:8080/?server=mysql](http://localhost:8080/?server=mysql)
+- Web UI (Adminer) [http://localhost:8080](http://localhost:8080)
 
 ## Default user
 
