@@ -10,7 +10,7 @@ networks:
 services:
   mysql:
     container_name: mysql
-    image: container-registry.oracle.com/mysql/community-server:latest
+    image: mysql:latest
     restart: always
     networks:
       - backend
