@@ -5,7 +5,7 @@ A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentatio
 ## Service URL
 
 - Database (MySQL/MariaDB) [http://localhost:3306](http://localhost:3306)
-- Web UI (Adminer) [http://localhost:8080](http://localhost:8080)
+- Web UI (Adminer) [http://localhost:8080/?server=mysql](http://localhost:8080/?server=mysql)
 
 ## Default user
 
@@ -17,23 +17,22 @@ Default logins should only be used in local/dev environments.
 
 ## Usage
 
-### Start a service group
+### Start using docker compose
 
 Manage service stack with [Docker Compose](https://docs.docker.com/compose/).
 
 ```bash
+# Initiate .env file
+cp .env_template .env
 # Start services
 docker compose up -d
-
-# Stop services and prune Docker volumes
-docker compose down -v
 ```
 
-To update containers with latest images:
+Update existing composed containers:
 
 ```bash
-docker compose pull
-docker compose up -d
+docker compose pull # fetch latest images
+docker compose down && docker compose up -d # recompose services
 ```
 
 ### Start services individually
@@ -49,7 +48,7 @@ docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --n
 #### MySQL
 
 ```bash
-docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql mysql:latest
+docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql container-registry.oracle.com/mysql/community-server:latest
 ```
 
 #### Adminer
@@ -64,7 +63,7 @@ docker run -p 8080:8080 -d --restart always --link mysql --name adminer adminer:
 
 ```bash
 # Enter container and initiate shell
-docker exec -it mysql sh
+docker exec -it mysql bash
 
 # List installed plugins
 ls -l /usr/lib/mysql/plugin
@@ -77,10 +76,10 @@ ls -l /usr/lib/mysql/plugin
 [用户无权通过当前网络访问 MySQL](https://github.com/docker-library/mysql/issues/275)。
 
 ```bash
-# 进入容器内部命令行
-docker exec -it trial-mysql-mysql-1 bash
+# Enter container and initiate shell
+docker exec -it mysql bash
 
-# 使用root用户名登录，会提示输入密码
+# Login as root user
 mysql -u root -p
 ```
 
@@ -100,3 +99,7 @@ select host ,user from mysql.user;
 - [Adminer](https://hub.docker.com/_/adminer)
 - [MariaDB](https://hub.docker.com/_/mariadb)
 - [MySQL](https://hub.docker.com/_/mysql)
+
+## References
+
+- https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html

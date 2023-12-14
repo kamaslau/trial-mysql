@@ -10,18 +10,19 @@ networks:
 services:
   mysql:
     container_name: mysql
-    image: mysql
+    image: container-registry.oracle.com/mysql/community-server:latest
     restart: always
     networks:
       - backend
+    env_file: .env
     ports:
-      - 3306:3306
+      - ${PORT-3306}:3306
     volumes:
       - type: volume
         source: mysql_data
         target: /var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   adminer:
     container_name: adminer
