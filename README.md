@@ -42,13 +42,13 @@ Launch database first, then the UI.
 #### MariaDB
 
 ```bash
-docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql mariadb:latest
+docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name mysql mariadb:latest
 ```
 
 #### MySQL
 
 ```bash
-docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name=mysql container-registry.oracle.com/mysql/community-server:latest
+docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name mysql mysql:latest
 ```
 
 #### Adminer
@@ -56,7 +56,7 @@ docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --n
 Pass in to link the database container with param `--link database-container-name:db` .
 
 ```bash
-docker run -p 8080:8080 -d --restart always --link mysql --name adminer adminer:latest
+docker run -p 8080:8080 -d --restart always --env ADMINER_DEFAULT_SERVER=mysql --name adminer adminer:latest
 ```
 
 ### Further operations
