@@ -17,9 +17,7 @@ Default logins should only be used in local/dev environments.
 
 ## Usage
 
-### Start using docker compose
-
-Manage service stack with [Docker Compose](https://docs.docker.com/compose/).
+### Start with [Docker Compose](https://docs.docker.com/compose/)
 
 ```bash
 # Initiate .env file
@@ -28,12 +26,12 @@ cp .env_template .env
 docker compose up -d
 ```
 
-Update existing composed containers:
+Update existing composed containers with latest images:
 
-```bash
-docker compose pull # fetch latest images
-docker compose down && docker compose up -d # recompose services
-```
+````bash
+docker compose pull && \
+docker compose down && \
+docker compose up -d
 
 ### Start services individually
 
@@ -43,7 +41,7 @@ Launch database first, then the UI.
 
 ```bash
 docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name mysql mariadb:latest
-```
+````
 
 #### MySQL
 
