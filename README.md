@@ -30,10 +30,11 @@ docker compose up -d
 
 Update existing composed containers with latest images:
 
-````bash
+```bash
 docker compose pull && \
 docker compose down && \
 docker compose up -d
+```
 
 ### Start services individually
 
@@ -43,7 +44,7 @@ Launch database first, then the UI.
 
 ```bash
 docker run -p 3306:3306 -d --restart always --env MYSQL_ROOT_PASSWORD=123456 --name mysql mariadb:latest
-````
+```
 
 #### MySQL
 
