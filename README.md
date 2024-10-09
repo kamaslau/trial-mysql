@@ -1,6 +1,6 @@
 # trial-mysql
 
-Trial or micro-service unit of [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentation/) with [Adminer](https://www.adminer.org/) as Web UI, and official Node.js driver.
+Trial or micro-service unit of [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentation/) with [Adminer](https://www.adminer.org/) as Web UI.
 
 For PostgreSQL bootstrapper, checkout the [trial-postgresql](https://github.com/kamaslau/trial-postgresql).
 
