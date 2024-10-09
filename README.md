@@ -1,6 +1,8 @@
 # trial-mysql
 
-A [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentation/) bootstraper, using [Adminer](https://www.adminer.org/) as Web UI。
+Trial or micro-service unit of [MySQL](https://dev.mysql.com/doc/)/[MariaDB](https://mariadb.org/documentation/) with [Adminer](https://www.adminer.org/) as Web UI, and official Node.js driver.
+
+For PostgreSQL bootstrapper, checkout the [trial-postgresql](https://github.com/kamaslau/trial-postgresql).
 
 ## Service URL
 
@@ -82,13 +84,12 @@ mysql -u root -p
 ```
 
 ```sql
--- 创建通过所有网络访问MySQL的root用户
+-- Create root user visiting from any network with password 123456 (change this for safety)
 CREATE USER 'root'@'%' IDENTIFIED BY '123456';
--- 授予全部权限给该用户
 grant all privileges on *.* to 'root'@'%';
 -- grant all privileges on *.* to 'root'@'%' identified by '123456';
 
--- 确认用户创建成功
+-- Verify the user creation
 select host ,user from mysql.user;
 ```
 
