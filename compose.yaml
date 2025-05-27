@@ -1,3 +1,5 @@
+name: trial-mysql
+
 volumes:
   mysql_data:
 
@@ -9,30 +11,32 @@ services:
   mysql:
     container_name: mysql
     image: mysql:latest
-    restart: always
+    restart: unless-stopped
     networks:
       - backend
-    env_file: .env
     ports:
       - ${PORT-3306}:3306
     volumes:
-      - type: volume
-        source: mysql_data
-        target: /var/lib/mysql
+      - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   adminer:
-    container_name: adminer
+    container_name: adminer-for-mysql
     image: adminer
     depends_on:
       - mysql
-    restart: always
+    restart: unless-stopped
     networks:
       - backend
       - frontend
-    env_file: .env
     ports:
       - ${PORT_UI-8080}:8080
     environment:
       ADMINER_DEFAULT_SERVER: mysql
+      ADMINER_DEFAULT_DB: mysql
+      ADMINER_DESIGN: dracula
+      # Dev ONLY
+      # ADMINER_SINGLE_USER: "true"
+      # ADMINER_USERNAME: ${POSTGRES_USER:-root}
+      # ADMINER_PASSWORD: ${POSTGRES_PASSWORD}
